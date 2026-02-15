@@ -1,598 +1,460 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | Venturalink</title>
-  <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="Venturalink" />
-  <link rel="manifest" href="/favicon/site.webmanifest" />
-  <link rel="stylesheet" href="styles/mainindex.css">
-  <link rel="stylesheet" href="styles/footer.css">
-  <script src="./scripts/theme.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Venturalink</title>
 
-  <style>
-    body {
-      background: linear-gradient(135deg, #23243a 0%, #18192b 100%);
-      color: #e4e8f7;
-      font-family: 'Inter', 'Space Grotesk', Arial, sans-serif;
-      margin: 0;
-      min-height: 100vh;
-    }
+<style>
 
-    .main-header {
-      background: #23243a;
-      box-shadow: 0 2px 16px rgba(102,126,234,0.08);
-      padding: 0.5rem 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+/* =========================
+   GLOBAL
+========================= */
 
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2rem;
-    }
+body {
+  margin: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  background: linear-gradient(135deg, #141e30, #1f2a56, #2b3a75);
+  background-size: 200% 200%;
+  animation: gradientMove 10s ease infinite;
+  color: #e4e8f7;
+}
 
-    .logo {
-      margin-right: 2rem;
-    }
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+/* =========================
+   NAVBAR
+========================= */
 
-    .logo-icon svg {
-      height: 2.5rem;
-      width: 2.5rem;
-      display: block;
-    }
+.main-header {
+  background: #25273b;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
 
-    .logo-text img {
-      height: 2.2rem;
-      margin-right: 0.5rem;
-      vertical-align: middle;
-      filter: drop-shadow(0 0 8px #667eea);
-    }
+.navbar {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
+/* Logo */
 
-    .nav-link {
-      padding: 0.5rem 0;
-      font-size: 1rem;
-      color: #e4e8f7;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-    .nav-link:hover {
-      color: #764ba2;
-    }
+.logo-icon {
+  width: 40px;
+  height: 40px;
+}
 
-    main {
-      margin-top: 60px;
-    }
+.logo-text img {
+  height: 28px;
+}
 
-    .cookie-section {
-      max-width: 800px;
-      margin: 3rem auto 2rem auto;
-      background: rgba(34,36,58,0.95);
-      border-radius: 1.5rem;
-      padding: 2.5rem 2rem;
-      box-shadow: 0 8px 32px rgba(102,126,234,0.12);
-      text-align: left;
-    }
+/* Nav Links */
 
-    .cookie-section h1 {
-      color: #667eea;
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      letter-spacing: 1px;
-      text-align: center;
-    }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
 
-    .cookie-section h2 {
-      color: #764ba2;
-      font-size: 1.3rem;
-      margin-top: 2rem;
-      margin-bottom: 0.7rem;
-    }
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #cfd3ff;
+  padding: 8px 0;
+  transition: 0.3s ease;
+}
 
-    .cookie-section p, .cookie-section ul {
-      color: #e4e8f7;
-      font-size: 1.08rem;
-      margin-bottom: 1rem;
-    }
+.nav-link span {
+  position: relative;
+  z-index: 2;
+}
 
-    .cookie-section ul {
-      padding-left: 1.5rem;
-    }
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg,#667eea,#00f5ff);
+  transition: width 0.3s ease;
+}
 
-    .cookie-section li {
-      margin-bottom: 0.5rem;
-    }
+.nav-link:hover {
+  color: #ffffff;
+}
 
-    .cookie-section a {
-      color: #667eea;
-      text-decoration: none;
-    }
+.nav-link:hover::after {
+  width: 100%;
+}
 
-    .cookie-section a:hover {
-      color: #764ba2;
-      text-decoration: underline;
-    }
+/* CTA Button */
 
-    /* Footer styles moved to styles/footer.css */
+.nav-link-cta {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 8px 18px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
 
-    /* Light Theme Overrides */
-    [data-theme="light"] body {
-      background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
-      color: #333333;
-    }
+.nav-link-cta::after {
+  display: none;
+}
 
-    [data-theme="light"] .main-header {
-      background: #ffffff;
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-    }
+.nav-link-cta:hover {
+  background: linear-gradient(90deg,#667eea,#764ba2);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(102,126,234,0.6);
+  transform: translateY(-2px);
+}
 
-    [data-theme="light"] .nav-link {
-      color: #333333;
-    }
+.nav-link.active {
+  color: #ffffff;
+}
 
-    [data-theme="light"] .nav-link:hover {
-      color: #373a9c;
-    }
+.nav-link.active::after {
+  width: 100%;
+}
 
-    [data-theme="light"] .contact-section {
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-      color: #333333;
-    }
+/* =========================
+   CONTACT SECTION
+========================= */
 
-    [data-theme="light"] .contact-section h1 {
-      color: #373a9c;
-    }
+.contact-wrapper {
+  max-width: 1200px;
+  margin: 4rem auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 0 1rem;
+}
 
-    [data-theme="light"] .contact-form input,
-    [data-theme="light"] .contact-form textarea {
-      background: #ffffff;
-      color: #333333;
-      border: 1px solid #373a9c;
-    }
+/* Glass Cards */
 
-    [data-theme="light"] .contact-form input:focus,
-    [data-theme="light"] .contact-form textarea:focus {
-      border-color: #5767f5;
-    }
+.contact-info-card,
+.contact-form-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: 0.4s ease;
+}
 
-    [data-theme="light"] .contact-form button {
-      background: #373a9c;
-      color: #ffffff;
-    }
+.contact-info-card:hover,
+.contact-form-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
 
-    [data-theme="light"] .contact-form button:hover {
-      background: #5767f5;
-    }
+.card-header {
+  background: linear-gradient(90deg,#667eea,#00f5ff);
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 16px 16px 0 0;
+}
 
-    [data-theme="light"] .contact-details {
-      color: #333333;
-    }
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 2rem;
+  gap: 2rem;
+}
 
-    [data-theme="light"] .contact-details strong {
-      color: #373a9c;
-    }
+.info-box {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 12px;
+  transition: 0.3s ease;
+}
 
-    [data-theme="light"] .contact-details a {
-      color: #333333;
-    }
+.info-box:hover {
+  background: rgba(255,255,255,0.1);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0,245,255,0.4);
+}
 
-    [data-theme="light"] .contact-section p {
-      color: #555555;
-    }
+.info-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
 
-    [data-theme="light"] .modal-overlay {
-      background: rgba(0, 0, 0, 0.5);
-    }
+/* FORM */
 
-    [data-theme="light"] .modal-box {
-      background: #ffffff;
-      border: 1px solid #373a9c;
-      color: #333333;
-    }
+.contact-form {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
 
-    [data-theme="light"] .modal-box h2 {
-      color: #373a9c;
-    }
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
 
-    [data-theme="light"] .modal-box p {
-      color: #555555;
-    }
+.form-row input {
+  flex: 1;
+}
 
-    [data-theme="light"] .cookie-section {
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    }
+.contact-form input,
+.contact-form textarea {
+  padding: 0.9rem;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  transition: 0.3s ease;
+}
 
-    [data-theme="light"] .cookie-section h1 {
-      color: #373a9c;
-    }
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #ccc;
+}
 
-    [data-theme="light"] .cookie-section h2 {
-      color: #5767f5;
-    }
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 0 12px #00f5ff;
+}
 
-    [data-theme="light"] .cookie-section p,
-    [data-theme="light"] .cookie-section ul,
-    [data-theme="light"] .cookie-section li {
-      color: #333333;
-    }
+.contact-form button {
+  background: linear-gradient(90deg,#667eea,#00f5ff);
+  color: #fff;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
 
-    [data-theme="light"] .cookie-section a {
-      color: #373a9c;
-    }
+.contact-form button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,245,255,0.6);
+  background: linear-gradient(90deg,#00f5ff,#667eea);
+}
 
-    [data-theme="light"] .cookie-section a:hover {
-      color: #5767f5;
-    }
+/* Responsive */
 
-    [data-theme="light"] .premium-footer {
-      background: #f5f5f5;
-      color: #333333;
-      border-top: 2px solid #e0e0e0;
-    }
+@media (max-width: 900px) {
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-row {
+    flex-direction: column;
+  }
+}
 
-    [data-theme="light"] .footer-section h4 {
-      color: #373a9c;
-    }
+/* Modal */
 
-    [data-theme="light"] .footer-links-grid a {
-      color: #333333;
-    }
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+}
 
-    [data-theme="light"] .footer-links-grid a:hover {
-      color: #373a9c;
-    }
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
 
-    [data-theme="light"] .theme-toggle--floating#theme-toggle {
-      background: linear-gradient(135deg, #ffffff, #f5f5f5);
-      color: #373a9c;
-      border: 1px solid rgba(55, 58, 156, 0.2);
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
-    }
+.modal-box {
+  background: #1f2a56;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid #00f5ff;
+  box-shadow: 0 0 25px rgba(0,245,255,0.5);
+}
 
-    [data-theme="light"] .theme-toggle--floating#theme-toggle:hover {
-      background: linear-gradient(135deg, #373a9c, #5767f5);
-      color: #ffffff;
-    }
-  </style>
+.modal-box h2 {
+  color: #00f5ff;
+}
 
-  <style>
-    body {
-      background: linear-gradient(135deg, #23243a 0%, #18192b 100%);
-      color: #e4e8f7;
-      font-family: 'Inter', 'Space Grotesk', Arial, sans-serif;
-      margin: 0;
-      min-height: 100vh;
-    }
-    .contact-section {
-      max-width: 600px;
-      margin: 3rem auto 2rem auto;
-      background: rgba(34,36,58,0.95);
-      border-radius: 1.5rem;
-      padding: 2.5rem 2rem;
-      box-shadow: 0 8px 32px rgba(102,126,234,0.12);
-      text-align: center;
-    }
-    .contact-section h1 {
-      color: #667eea;
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      letter-spacing: 1px;
-    }
-    .contact-section p {
-      margin-bottom: 2rem;
-      color: #aab4e8;
-      font-size: 1.1rem;
-    }
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      align-items: stretch;
-    }
-    .contact-form input,
-    .contact-form textarea {
-      background: #23243a;
-      color: #e4e8f7;
-      border: 1px solid #667eea;
-      border-radius: 0.7rem;
-      padding: 0.8rem 1rem;
-      font-size: 1rem;
-      font-family: inherit;
-      resize: vertical;
-      transition: border 0.2s;
-    }
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      border-color: #764ba2;
-      outline: none;
-    }
-    .contact-form button {
-      background: #667eea;
-      color: #fff;
-      border: none;
-      border-radius: 0.7rem;
-      padding: 0.7rem 1.5rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
-      margin-top: 0.5rem;
-    }
-    .contact-form button:hover {
-      background: #764ba2;
-    }
-    .contact-details {
-      margin-top: 2.5rem;
-      color: #e4e8f7;
-      font-size: 1rem;
-      text-align: left;
-    }
-    .contact-details strong {
-      color: #667eea;
-    }
-    .contact-details a {
-      color: #e4e8f7;
-      text-decoration: none;
-    }
-    .contact-details a:hover {
-      text-decoration: underline;
-    }
+.modal-box button {
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background: linear-gradient(90deg,#667eea,#00f5ff);
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
-    /* Footer override for dark theme */
-    .premium-footer {
-      background: #18192b;
-      color: #e4e8f7;
-      border-top: 2px solid #23243a;
-    }
-    .footer-section h4 {
-      color: #667eea;
-    }
-    .footer-links-grid a {
-      color: #e4e8f7;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links-grid a:hover {
-      color: #764ba2;
-      text-decoration: underline;
-    }
-    .footer-bottom-content {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      align-items: center; 
-      text-align: center;  
-      font-size: 0.9rem;
-      color: #aab4e8;
-    }
-    .footer-badges {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center; 
-    }
-
-    /* Modal styling */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(20, 21, 35, 0.85);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-      z-index: 2000;
-    }
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-    .modal-box {
-      background: #23243a;
-      padding: 2rem 2.5rem;
-      border-radius: 1.2rem;
-      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.25);
-      max-width: 420px;
-      text-align: center;
-      border: 1px solid #667eea;
-      color: #e4e8f7;
-      animation: fadeIn 0.3s ease-out;
-    }
-    .modal-box h2 {
-      color: #667eea;
-      margin-bottom: 0.8rem;
-    }
-    .modal-box p {
-      color: #aab4e8;
-      margin-bottom: 1.5rem;
-    }
-    .modal-box button {
-      background: #667eea;
-      color: #fff;
-      border: none;
-      border-radius: 0.7rem;
-      padding: 0.6rem 1.4rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.25s ease;
-    }
-    .modal-box button:hover {
-      background: #764ba2;
-    }
-    @keyframes fadeIn {
-      from { transform: translateY(-15px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-  </style>
+</style>
 </head>
+
 <body>
-  <!-- Header -->
-  <header class="main-header">
-    <nav class="navbar" id="main-nav">
-      <div class="logo">
-        <a href="index.html" class="logo-link">
-          <div class="logo-container">
-            <div class="logo-icon">
-              <svg viewBox="0 0 40 40" fill="none">
-                <path d="M20 4L36 12V28L20 36L4 28V12L20 4Z" stroke="url(#logo-gradient)" stroke-width="2" fill="none"/>
-                <circle cx="20" cy="20" r="6" fill="url(#logo-gradient)"/>
-                <defs>
-                  <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#667eea"/>
-                    <stop offset="100%" style="stop-color:#764ba2"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <div class="logo-text">
-              <img src="V.png" alt="Venturalink Logo">
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="nav-links">
-        <a href="index.html" class="nav-link" data-text="Home"><span>Home</span></a>
-        <a href="about.html" class="nav-link" data-text="About"><span>About Us</span></a>
-        <a href="features.html" class="nav-link" data-text="Features"><span>Features</span></a>
-        <a href="pricing.html" class="nav-link" data-text="Pricing"><span>Pricing</span></a>
-        <a href="contact.html" class="nav-link" data-text="Contact"><span>Contact</span></a>
-        <a href="blog.html" class="nav-link" data-text="Blog"><span>Blog</span></a>
-        <a href="help.html" class="nav-link" data-text="Help"><span>Help Center</span></a>
-        <a href="guides.html" class="nav-link" data-text="Guides"><span>Guides</span></a>
-        <a href="api.html" class="nav-link" data-text="API"><span>API Docs</span></a>
-        <a href="terms.html" class="nav-link" data-text="Terms"><span>Terms of Service</span></a>
-        <a href="login.html" class="nav-link" data-text="Login"><span>Login</span></a>
-        <a href="register.html" class="nav-link nav-link-cta"><span>Register</span><div class="nav-link-bg"></div></a>
-      </div>
-    </nav>
-  </header>
 
-  <main>
-    <section class="contact-section">
-      <h1>Contact Us</h1>
-      <p>
-        We'd love to hear from you! Fill out the form below and our team will get back to you soon.
-      </p>
-      <form class="contact-form" autocomplete="off">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-      <div class="contact-details">
-        <p><strong>Email:</strong> <a href="mailto:support@venturalink.com">support@venturalink.com</a></p>
-        <p><strong>Phone:</strong> <a href="tel:+919876543210">+91-98765-43210</a></p>
-        <p><strong>Address:</strong> 2nd Floor, Tech Park, Bengaluru, India</p>
-      </div>
-    </section>
-  </main>
+<header class="main-header">
+<nav class="navbar">
 
-  <div id="footer"></div>
-  <script>
-    (function loadFooter(){
-      fetch('footer.html')
-        .then(function(res){ if(!res.ok) throw new Error('Failed to fetch footer'); return res.text(); })
-        .then(function(html){ document.getElementById('footer').innerHTML = html; })
-        .catch(function(err){ console.warn('Footer load failed:', err); });
-    })();
-  </script>
-
-  <!-- Custom cursor -->
-  <div class="cursor"> 
-    <div class="cursor__ball cursor__ball--big">
-      <svg width="40" height="40">
-        <circle cx="20" cy="20" r="20"/>
+<div class="logo">
+  <a href="index.html" class="logo-container">
+    <div class="logo-icon">
+      <svg viewBox="0 0 40 40" fill="none">
+        <path d="M20 4L36 12V28L20 36L4 28V12L20 4Z" 
+              stroke="url(#logo-gradient)" stroke-width="2"/>
+        <circle cx="20" cy="20" r="6" fill="url(#logo-gradient)"/>
+        <defs>
+          <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#667eea"/>
+            <stop offset="100%" stop-color="#764ba2"/>
+          </linearGradient>
+        </defs>
       </svg>
     </div>
-  </div>
+    <div class="logo-text">
+      <img src="V.png" alt="Venturalink Logo">
+    </div>
+  </a>
+</div>
 
-  <!-- Theme Toggle Button -->
-  <button id="theme-toggle" class="theme-toggle--floating" aria-label="Toggle theme">🌙</button>
+<div class="nav-links">
+  <a href="index.html" class="nav-link"><span>Home</span></a>
+  <a href="about.html" class="nav-link"><span>About Us</span></a>
+  <a href="features.html" class="nav-link"><span>Features</span></a>
+  <a href="pricing.html" class="nav-link"><span>Pricing</span></a>
+  <a href="contact.html" class="nav-link"><span>Contact</span></a>
+  <a href="blog.html" class="nav-link"><span>Blog</span></a>
+  <a href="help.html" class="nav-link"><span>Help Center</span></a>
+  <a href="guides.html" class="nav-link"><span>Guides</span></a>
+  <a href="api.html" class="nav-link"><span>API Docs</span></a>
+  <a href="terms.html" class="nav-link"><span>Terms of Service</span></a>
+  <a href="login.html" class="nav-link"><span>Login</span></a>
+  <a href="register.html" class="nav-link nav-link-cta"><span>Register</span></a>
+</div>
 
-  <!-- Modal for success/error -->
-  <div id="notificationModal" class="modal-overlay">
-    <div class="modal-box">
-      <h2 id="modalTitle"></h2>
-      <p id="modalMessage"></p>
-      <button id="closeModal">OK</button>
+</nav>
+</header>
+
+<main>
+<section class="contact-wrapper">
+
+<div class="contact-info-card">
+<div class="card-header">Get In Touch With Us Now!</div>
+<div class="info-grid">
+<div class="info-box"><div class="info-icon">📞</div><h3>Phone</h3><p>+91 98765 43210</p></div>
+<div class="info-box"><div class="info-icon">✉️</div><h3>Email</h3><p>support@venturalink.com</p></div>
+<div class="info-box"><div class="info-icon">📍</div><h3>Location</h3><p>Bengaluru, India</p></div>
+<div class="info-box"><div class="info-icon">🕒</div><h3>Hours</h3><p>09:00 AM - 06:00 PM</p></div>
+</div>
+</div>
+
+<div class="contact-form-card">
+<div class="card-header">Contact Us</div>
+<form class="contact-form">
+<div class="form-row">
+<input type="text" placeholder="First Name *" required>
+<input type="text" placeholder="Last Name">
+</div>
+<div class="form-row">
+<input type="tel" placeholder="Mobile No *" required>
+<input type="email" placeholder="Email ID *" required>
+</div>
+<textarea rows="5" placeholder="Message"></textarea>
+<button type="submit">Submit ✈</button>
+</form>
+</div>
+
+</section>
+</main>
+
+<div id="notificationModal" class="modal-overlay">
+<div class="modal-box">
+<h2>Success!</h2>
+<p>Your message has been sent successfully.</p>
+<button onclick="closeModal()">OK</button>
+</div>
+</div>
+
+<script>
+const form = document.querySelector(".contact-form");
+const modal = document.getElementById("notificationModal");
+
+
+</script>
+
+<footer style="background:#18192b; color:#e4e8f7; border-top:2px solid #23243a; margin-top:8rem;">
+  <div style="max-width:1400px; margin:0 auto; padding:5rem 2rem 3rem;">
+    <div style="display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:4rem; margin-bottom:3rem;">
+      <div style="text-align:center; margin-bottom:2.5rem;">
+        <div style="font-size:2.2rem; font-weight:800; color:#667eea; font-family:inherit; margin-bottom:1.2rem;">Venturalink</div>
+        <div style="font-size:1.15rem; color:#e4e8f7; line-height:1.7; max-width:480px; margin:0 auto;">
+          Connecting investors with entrepreneurs to create meaningful business relationships and drive economic progress in the digital age.
+        </div>
+      </div>
+      <div>
+        <div style="font-size:1.2rem; font-weight:600; color:#667eea; margin-bottom:1.2rem; border-bottom:2px solid #667eea; width:max-content;">Platform</div>
+        <ul style="list-style:none; padding:0; color:#a0a0a8;">
+          <li style="margin-bottom:1rem;"><a href="about.html" style="color:#a0a0a8; text-decoration:none;">About Us</a></li>
+          <li style="margin-bottom:1rem;"><a href="features.html" style="color:#a0a0a8; text-decoration:none;">Features</a></li>
+          <li style="margin-bottom:1rem;"><a href="pricing.html" style="color:#a0a0a8; text-decoration:none;">Pricing</a></li>
+          <li><a href="contact.html" style="color:#a0a0a8; text-decoration:none;">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:1.2rem; font-weight:600; color:#667eea; margin-bottom:1.2rem; border-bottom:2px solid #667eea; width:max-content;">Resources</div>
+        <ul style="list-style:none; padding:0; color:#a0a0a8;">
+          <li style="margin-bottom:1rem;"><a href="blog.html" style="color:#a0a0a8; text-decoration:none;">Blog</a></li>
+          <li style="margin-bottom:1rem;"><a href="help.html" style="color:#a0a0a8; text-decoration:none;">Help Center</a></li>
+          <li style="margin-bottom:1rem;"><a href="guides.html" style="color:#a0a0a8; text-decoration:none;">Guides</a></li>
+          <li><a href="api.html" style="color:#a0a0a8; text-decoration:none;">API Docs</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:1.2rem; font-weight:600; color:#667eea; margin-bottom:1.2rem; border-bottom:2px solid #667eea; width:max-content;">Legal</div>
+        <ul style="list-style:none; padding:0; color:#a0a0a8;">
+          <li style="margin-bottom:1rem;"><a href="terms.html" style="color:#a0a0a8; text-decoration:none;">Terms of Service</a></li>
+          <li style="margin-bottom:1rem;"><a href="privacy.html" style="color:#a0a0a8; text-decoration:none;">Privacy Policy</a></li>
+          <li style="margin-bottom:1rem;"><a href="cookies.html" style="color:#a0a0a8; text-decoration:none;">Cookie Policy</a></li>
+          <li><a href="security.html" style="color:#a0a0a8; text-decoration:none;">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="width:100%; height:1px; background:linear-gradient(90deg,transparent,#23243a,transparent); margin-bottom:1.5rem;"></div>
+    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; text-align:center;">
+      <p style="color:#e4e8f7; font-size:1rem; margin:0;">© 2025 Venturalink Platform. All rights reserved.</p>
+      <div style="display:flex; gap:1rem; justify-content:center;">
+        <span style="padding:0.25rem 1rem; background:rgba(242,237,237,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:9999px; font-size:0.9rem; color:#a0a0a8;">Trusted by 10K+ users</span>
+        <span style="padding:0.25rem 1rem; background:rgba(242,237,237,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:9999px; font-size:0.9rem; color:#a0a0a8;">SOC 2 Compliant</span>
+      </div>
     </div>
   </div>
+</footer>
 
-  <script type="module" src="scripts/main.js"></script>
-  <script src="scripts/cursor.js"></script>
-
-  <script>
-    const form = document.querySelector('.contact-form');
-    const modal = document.getElementById('notificationModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalMessage = document.getElementById('modalMessage');
-    const closeModal = document.getElementById('closeModal');
-
-    // Simulated backend (replace later with actual API)
-    async function submitForm(data) {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          Math.random() > 0.2 ? resolve({ ok: true }) : reject();
-        }, 1000);
-      });
-    }
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
-
-      try {
-        const response = await submitForm(data);
-        if (response.ok) {
-          form.reset();
-          showModal("Success!", "Your message has been sent successfully!");
-        }
-      } catch (error) {
-        showModal("Error", "Something went wrong, please try again.");
-      }
-    });
-
-    function showModal(title, message) {
-      modalTitle.textContent = title;
-      modalMessage.textContent = message;
-      modal.classList.add('active');
-    }
-
-    closeModal.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('active');
-    });
-  </script>
 </body>
 </html>
