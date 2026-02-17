@@ -6,19 +6,12 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "source": "/api/(.*)",
+      "destination": "/server.js"
     }
   ],
-  "env": {
-    "NODE_ENV": "production"
-  },
   "redirects": [
     { "source": "/", "destination": "/index.html" },
     { "source": "/login", "destination": "/login.html" },
@@ -30,5 +23,8 @@
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/features", "destination": "/features.html" },
     { "source": "/pricing", "destination": "/pricing.html" }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
