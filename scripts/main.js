@@ -46,6 +46,41 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }, 1500);
     });
+
+    // ===============================
+    // Navbar Motion & Magnetic Effect
+    // ===============================
+    // Magnetic hover effect for logo and nav links
+    function addMagneticEffect(element, strength = 30) {
+        if (!element) return;
+        element.classList.add('magnetic-hover');
+        let boundingRect;
+        element.addEventListener('mouseenter', () => {
+            boundingRect = element.getBoundingClientRect();
+        });
+        element.addEventListener('mousemove', (e) => {
+            const x = e.clientX - boundingRect.left - boundingRect.width / 2;
+            const y = e.clientY - boundingRect.top - boundingRect.height / 2;
+            element.style.transform = `translate(${x / strength}px, ${y / strength}px)`;
+        });
+        element.addEventListener('mouseleave', () => {
+            element.style.transform = '';
+        });
+    }
+
+    // Apply to logo and nav links
+    const logo = document.querySelector('.logo');
+    if (logo) addMagneticEffect(logo, 18);
+    document.querySelectorAll('.nav-link').forEach(link => addMagneticEffect(link, 12));
+
+    // Staggered nav link animation
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach((link, i) => {
+        link.style.animationDelay = `${0.25 + i * 0.08}s`;
+    });
+
+    // Optional: Add floating animation to logo only if not already animated by CSS
+    // (CSS already animates .logo-container)
 });
 
 const firebaseConfig = {
