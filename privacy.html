@@ -1,150 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Privacy Policy | Venturalink</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | Venturalink</title>
 
-<link rel="stylesheet" href="styles/mainindex.css" />
-<link rel="stylesheet" href="styles/footer.css" />
-<script src="./scripts/theme.js" defer></script>
+  <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Venturalink" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
 
-<style>
+  <link rel="stylesheet" href="styles/mainindex.css" />
+  <link rel="stylesheet" href="styles/footer.css" />
+  <link rel="stylesheet" href="styles/mobile-menu.css" />
+  <script src="./scripts/theme.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
-/* ===== BODY ===== */
-body {
-  margin: 0;
-  font-family: "Inter", sans-serif;
-  background: linear-gradient(135deg, #18192b, #23243a, #2b3a75);
-  color: #e4e8f7;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* ===== MAIN SECTION ===== */
-main {
-  margin-top: 110px;
-  padding: 40px 20px;
-}
-
-/* ===== CONTAINER ===== */
-.privacy-container {
-  max-width: 1000px;
-  margin: auto;
-  text-align: center;
-}
-
-/* ===== TITLE ===== */
-.privacy-title {
-  font-size: 3rem;
-  background: linear-gradient(90deg, #4f8cff, #00f5ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 20px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  animation: fadeIn 1s ease-in-out;
-}
-
-.privacy-sub {
-  color: #7ed6fb;
-  margin-bottom: 50px;
-  font-size: 1.1rem;
-}
-
-/* ===== GRID ===== */
-.policy-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-}
-
-/* ===== CARD ===== */
-.policy-card {
-  background: linear-gradient(135deg, #23243a 60%, #2b3a75 100%);
-  backdrop-filter: blur(16px);
-  border-radius: 20px;
-  padding: 25px;
-  text-align: left;
-  border: 1.5px solid #4f8cff;
-  box-shadow: 0 4px 24px #4f8cff33;
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Glow border effect */
-.policy-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  padding: 1px;
-  background: linear-gradient(90deg, #4f8cff, #00f5ff);
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-/* Hover Effect */
-.policy-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(118,75,162,0.3);
-}
-
-.policy-card:hover::before {
-  opacity: 1;
-}
-
-.policy-card h2 {
-  color: #4f8cff;
-  font-weight: 700;
-  margin-bottom: 15px;
-  font-size: 1.3rem;
-}
-
-.policy-card p,
-  color: #e4e8f7;
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-.policy-card ul {
-  padding-left: 20px;
-}
-
-/* CONTACT LINK */
-.policy-card a {
-  color: #00f5ff;
-  text-decoration: underline;
-  font-weight: 700;
-  transition: 0.3s;
-}
-
-.policy-card a:hover {
-  color: #4f8cff;
-  text-shadow: 0 0 10px #00f5ff;
-}
-
-/* Animation */
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .privacy-title {
-    font-size: 2.2rem;
+  <style>
+  /* ===== BODY ===== */
+  body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background: linear-gradient(135deg, #18192b, #23243a, #2b3a75);
+    color: #e4e8f7;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
-}
 
-</style>
+  /* ===== MAIN SECTION ===== */
+  main {
+    margin-top: 110px;
+    padding: 40px 20px;
+  }
+
+  /* ===== CONTAINER ===== */
+  .privacy-container {
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+  }
+
+  /* ===== TITLE ===== */
+  .privacy-title {
+    font-size: 3rem;
+    background: linear-gradient(90deg, #4f8cff, #00f5ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .privacy-sub {
+    color: #7ed6fb;
+    margin-bottom: 50px;
+    font-size: 1.1rem;
+  }
+
+  /* ===== GRID ===== */
+  .policy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+  }
+
+  /* ===== CARD ===== */
+  .policy-card {
+    background: linear-gradient(135deg, #23243a 60%, #2b3a75 100%);
+    backdrop-filter: blur(16px);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: left;
+    border: 1.5px solid #4f8cff;
+    box-shadow: 0 4px 24px #4f8cff33;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Glow border effect */
+  .policy-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 1px;
+    background: linear-gradient(90deg, #4f8cff, #00f5ff);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  /* Hover Effect */
+  .policy-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(118,75,162,0.3);
+  }
+
+  .policy-card:hover::before {
+    opacity: 1;
+  }
+
+  .policy-card h2 {
+    color: #4f8cff;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+  }
+
+  .policy-card p, .policy-card ul {
+    color: #e4e8f7;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .policy-card ul {
+    padding-left: 20px;
+  }
+
+  /* CONTACT LINK */
+  .policy-card a {
+    color: #00f5ff;
+    text-decoration: underline;
+    font-weight: 700;
+    transition: 0.3s;
+  }
+
+  .policy-card a:hover {
+    color: #4f8cff;
+    text-shadow: 0 0 10px #00f5ff;
+  }
+
+  /* Animation */
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .privacy-title {
+      font-size: 2.2rem;
+    }
+  }
+  </style>
 </head>
 
 <body>
@@ -229,12 +236,19 @@ main {
 <script>
 fetch("main-header.html")
   .then(res => res.text())
-  .then(data => document.getElementById("header").innerHTML = data);
+  .then(data => {
+      document.getElementById("header").innerHTML = data;
+      if (typeof initThemeToggle === 'function') initThemeToggle();
+  });
 
 fetch("footer.html")
   .then(res => res.text())
   .then(data => document.getElementById("footer").innerHTML = data);
 </script>
+
+<script type="module" src="scripts/main.js"></script>
+<script src="scripts/cursor.js"></script>
+<script src="scripts/mobile-menu.js"></script>
 
 </body>
 </html>
