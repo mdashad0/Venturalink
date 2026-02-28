@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact | Venturalink</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Venturalink</title>
+  <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Venturalink" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="styles/mainindex.css">
+  <link rel="stylesheet" href="styles/footer.css">
+  <link rel="stylesheet" href="styles/mobile-menu.css">
+  <script src="./scripts/theme.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
 <style>
 
@@ -150,5 +164,167 @@ const modal = document.getElementById("notificationModal");
   </div>
 </footer>
 
+  <script type="module" src="scripts/main.js"></script>
+  <script src="scripts/cursor.js"></script>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const nameInput = document.getElementById('contact-name');
+    const emailInput = document.getElementById('contact-email');
+    const messageInput = document.getElementById('contact-message');
+    const messageCount = document.getElementById('messageCount');
+    const modal = document.getElementById('notificationModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalMessage = document.getElementById('modalMessage');
+    const closeModal = document.getElementById('closeModal');
+    const submitBtn = document.getElementById('contactSubmitBtn');
+
+    // Validation functions
+    function validateName(value) {
+      return value && value.trim().length >= 2 && value.trim().length <= 50;
+    }
+
+    function validateEmail(value) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return value && emailRegex.test(value);
+    }
+
+    function validateMessage(value) {
+      return value && value.trim().length >= 10 && value.trim().length <= 1000;
+    }
+
+    function showFieldError(fieldId, errorId, message) {
+      const field = document.getElementById(fieldId);
+      const errorElement = document.getElementById(errorId);
+      const formGroup = field.closest('.form-group');
+      
+      formGroup.classList.add('has-error');
+      errorElement.textContent = message;
+    }
+
+    function clearFieldError(fieldId, errorId) {
+      const field = document.getElementById(fieldId);
+      const errorElement = document.getElementById(errorId);
+      const formGroup = field.closest('.form-group');
+      
+      formGroup.classList.remove('has-error');
+      errorElement.textContent = '';
+    }
+
+    // Character counter for message
+    messageInput.addEventListener('input', () => {
+      messageCount.textContent = messageInput.value.length;
+      
+      if (messageInput.value.length > messageInput.maxLength * 0.8) {
+        messageCount.style.color = '#ffa500';
+      } else if (messageInput.value.length > messageInput.maxLength * 0.95) {
+        messageCount.style.color = '#ff6b6b';
+      } else {
+        messageCount.style.color = '#aab4e8';
+      }
+    });
+
+    // Real-time validation
+    nameInput.addEventListener('blur', () => {
+      if (!nameInput.value) {
+        showFieldError('contact-name', 'nameError', 'Name is required');
+      } else if (!validateName(nameInput.value)) {
+        showFieldError('contact-name', 'nameError', 'Name must be between 2-50 characters');
+      } else {
+        clearFieldError('contact-name', 'nameError');
+      }
+    });
+
+    emailInput.addEventListener('blur', () => {
+      if (!emailInput.value) {
+        showFieldError('contact-email', 'emailError', 'Email is required');
+      } else if (!validateEmail(emailInput.value)) {
+        showFieldError('contact-email', 'emailError', 'Please enter a valid email address');
+      } else {
+        clearFieldError('contact-email', 'emailError');
+      }
+    });
+
+    messageInput.addEventListener('blur', () => {
+      if (!messageInput.value) {
+        showFieldError('contact-message', 'messageError', 'Message is required');
+      } else if (!validateMessage(messageInput.value)) {
+        showFieldError('contact-message', 'messageError', 'Message must be between 10-1000 characters');
+      } else {
+        clearFieldError('contact-message', 'messageError');
+      }
+    });
+
+    // Form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Validate all fields
+      let isFormValid = true;
+
+      if (!validateName(nameInput.value)) {
+        showFieldError('contact-name', 'nameError', 'Name must be between 2-50 characters');
+        isFormValid = false;
+      } else {
+        clearFieldError('contact-name', 'nameError');
+      }
+
+      if (!validateEmail(emailInput.value)) {
+        showFieldError('contact-email', 'emailError', 'Please enter a valid email address');
+        isFormValid = false;
+      } else {
+        clearFieldError('contact-email', 'emailError');
+      }
+
+      if (!validateMessage(messageInput.value)) {
+        showFieldError('contact-message', 'messageError', 'Message must be between 10-1000 characters');
+        isFormValid = false;
+      } else {
+        clearFieldError('contact-message', 'messageError');
+      }
+
+      if (!isFormValid) return;
+
+      // Submit form
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      try {
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        // Simulated backend call (replace with actual API)
+        await new Promise((resolve, reject) => {
+          setTimeout(() => {
+            Math.random() > 0.2 ? resolve({ ok: true }) : reject();
+          }, 1000);
+        });
+
+        form.reset();
+        messageCount.textContent = '0';
+        showModal('Success!', 'Your message has been sent successfully! We will get back to you soon.');
+      } catch (error) {
+        showModal('Error', 'Something went wrong, please try again.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+      }
+    });
+
+    function showModal(title, message) {
+      modalTitle.textContent = title;
+      modalMessage.textContent = message;
+      modal.classList.add('active');
+    }
+
+    closeModal.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+  </script>
+  <script src="scripts/mobile-menu.js"></script>
 </body>
 </html>
